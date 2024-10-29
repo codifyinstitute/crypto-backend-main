@@ -1,6 +1,4 @@
 
-
-
 const moment = require('moment');
 const Counter = require('../Models/counterSchema');
 const mongoose = require('mongoose');
