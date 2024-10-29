@@ -1,6 +1,6 @@
 const Currency = require('../Models/unitedStateCurrency');
 
-// Add a new currency
+// Add a new currency   
 exports.addCurrency = async (req, res) => {
     try {
         const { Name, Symbol, Rate, TransactionId } = req.body;
@@ -13,7 +13,7 @@ exports.addCurrency = async (req, res) => {
         const newCurrency = new Currency({
             Name,
             Symbol,
-            Rate,
+            Rate,   
             TransactionId,
             QRCode
         });

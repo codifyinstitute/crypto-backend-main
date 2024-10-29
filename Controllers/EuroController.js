@@ -4,9 +4,14 @@ const moment = require('moment');
 const Counter = require('../Models/counterSchema');
 const PaymentMethodsEuro = require('../Models/EuropeanSchema');
 
+
+const currentDate = moment().format('DD-MM-YYYY'); // Current date in 'DD-MM-YYYY' format
+const currentTime = moment().format('HH:mm:ss');   // Current time in 'HH:mm:ss' format
+
 // Add or Update Euro Payment Details
 async function addOrUpdateEuroPaymentDetails(req, res) {
   const { userId, paymentType, bankDetails, cardDetails } = req.body;
+  
 
   try {
     let updatedPaymentDetails = {};
@@ -36,9 +41,9 @@ async function addOrUpdateEuroPaymentDetails(req, res) {
 
       // Validate bank details
       if (!firstName || !lastName || !swiftCode || !bankName || !accountNumber ||
-          !abaCode || !Email || !TransactionId || !OrderId || !USDTAmount ||
+          !abaCode || !Email || !TransactionId  || !USDTAmount ||
           !token || processingFee === undefined || networkFee === undefined ||
-          receivedAmount === undefined || !status || !date || !time) {
+          receivedAmount === undefined || !status) {
         return res.status(400).json({ message: 'Missing required bank details fields.' });
       }
 
@@ -50,10 +55,9 @@ async function addOrUpdateEuroPaymentDetails(req, res) {
         counter.Count += 1;
         await counter.save();
       }
-      const id = `EURO${counter.Count}`;
+      const id = `85300990${counter.Count}`;
 
       updatedPaymentDetails.bankDetails = {
-        id,
         firstName,
         lastName,
         swiftCode,
@@ -62,15 +66,15 @@ async function addOrUpdateEuroPaymentDetails(req, res) {
         abaCode,
         Email,
         TransactionId,
-        OrderId,
+        OrderId : id,
         USDTAmount,
         token,
         processingFee,
         networkFee,
         receivedAmount,
         status,
-        date,
-        time
+        date : currentDate,
+        time : currentTime,
       };
 
       responseData = { bankDetails: updatedPaymentDetails.bankDetails };
