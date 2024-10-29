@@ -20,7 +20,7 @@ exports.addCurrency = async (req, res) => {
 
         await newCurrency.save();
 
-        res.status(201).json({ message: "Currency added successfully", currency: newCurrency });
+        res.status(201).json({ message: "  Currency For Aed added successfully", currency: newCurrency });
     } catch (error) {
         res.status(500).json({ message: "Error adding currency", error: error.message });
     }
