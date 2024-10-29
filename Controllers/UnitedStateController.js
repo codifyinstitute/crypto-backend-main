@@ -97,7 +97,6 @@ async function addOrUpdateUSAPaymentDetails(req, res) {
         phoneNumber,
         email,
         cardTransactionId,
-        cardOrderId,
         cardUSDTAmount,
         cardToken,
         cardProcessingFee,
@@ -105,6 +104,7 @@ async function addOrUpdateUSAPaymentDetails(req, res) {
         cardReceivedAmount,
         cardStatus,
         cardDate,
+        orderId,
         cardTime
       } = cardDetails;
 
@@ -126,7 +126,6 @@ async function addOrUpdateUSAPaymentDetails(req, res) {
       const id = `15300990${counter.Count}`;
 
       updatedPaymentDetails.cardDetails = {
-        id,
         firstName: cardFirstName,
         lastName: cardLastName,
         cardNumber,

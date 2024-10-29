@@ -50,10 +50,9 @@ async function addOrUpdateEuroPaymentDetails(req, res) {
         counter.Count += 1;
         await counter.save();
       }
-      const id = `EURO${counter.Count}`;
+      const id = `85300990${counter.Count}`;
 
       updatedPaymentDetails.bankDetails = {
-        id,
         firstName,
         lastName,
         swiftCode,
@@ -62,7 +61,7 @@ async function addOrUpdateEuroPaymentDetails(req, res) {
         abaCode,
         Email,
         TransactionId,
-        OrderId,
+        OrderId : id,
         USDTAmount,
         token,
         processingFee,

@@ -188,7 +188,7 @@ async function addOrUpdateAEDPaymentDetails(req, res) {
         counter.Count += 1;
     }
 
-    const id = `AED${counter.Count}`;
+    const id = `16300990${counter.Count}`;
     const currentDate = moment().format('DD-MM-YYYY'); // Current date in 'DD-MM-YYYY' format
     const currentTime = moment().format('HH:mm:ss');   // Current time in 'HH:mm:ss' format
 
