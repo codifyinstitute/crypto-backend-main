@@ -13,19 +13,19 @@ const aedCurrncyController = require('../Controllers/aedCurrncyController');
 
 
 // Route to add a new currency
-router.post('/add', upload, currencyController.addCurrency);
+router.post('/india/add', upload, currencyController.addCurrency);
 
 // Route to get all currencies
-router.get('/all', currencyController.getAllCurrencies);
+router.get('/india/all', currencyController.getAllCurrencies);
 
 // Route to get a currency by ID
-router.get('/get/:id', currencyController.getCurrencyById);
+router.get('/india/get/:id', currencyController.getCurrencyById);
 
 // Route to update a currency by ID
-router.put('/put/:id', upload, currencyController.updateCurrency);
+router.put('/india/put/:id', upload, currencyController.updateCurrency);
 
 // Route to delete a currency by ID
-router.delete('/del/:id', currencyController.deleteCurrency);
+router.delete('/india/del/:id', currencyController.deleteCurrency);
 
 
 

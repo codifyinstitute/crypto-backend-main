@@ -1,4 +1,4 @@
-const Currency = require('../Models/currencySchema');
+const Currency = require('../Models/BlrCurrency');
 
 // Add a new currency
 exports.addCurrency = async (req, res) => {
@@ -22,6 +22,7 @@ exports.addCurrency = async (req, res) => {
 
         res.status(201).json({ message: "Currency added successfully", currency: newCurrency });
     } catch (error) {
+        console.log(error)
         res.status(500).json({ message: "Error adding currency", error: error.message });
     }
 };
