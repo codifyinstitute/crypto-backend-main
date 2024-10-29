@@ -80,6 +80,10 @@ const bankDetailsSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+
+    OrderId : {
+      type : String,
+    },
     AEDAmount: {
       type: Number,
       required: true,
