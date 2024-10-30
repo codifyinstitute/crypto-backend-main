@@ -13,7 +13,7 @@ const getAllRecords = async (req, res) => {
 // Get record by email
 const getRecordByEmail = async (req, res) => {
     try {
-        const record = await UsaBank.findOne({ Email: req.params.email });
+        const record = await UsaBank.find({ Email: req.params.email });
         if (!record) return res.status(404).json({ message: "Record not found" });
         res.status(200).json(record);
     } catch (error) {

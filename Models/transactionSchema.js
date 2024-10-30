@@ -6,15 +6,7 @@ const transactionSchema = new mongoose.Schema({
         required:true,
         unique:true
     },
-    TransactionId:{
-        type:String,
-        required:true   
-    },
     Email:{
-        type:String,
-        required:true
-    },
-    Name:{
         type:String,
         required:true
     },
@@ -22,17 +14,8 @@ const transactionSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    BankName:{
-        type:String,
-        required:true
-    },
-    AccountNumber:{
-        type:String,
-        required:true
-    },
-    IFSC:{
-        type:String,
-        required:true
+    AccountDetail:{
+        type:Object
     },
     USDTAmount:{
         type:Number,

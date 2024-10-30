@@ -1,26 +1,25 @@
 const mongoose = require('mongoose');
 
 const euCardSchema = new mongoose.Schema({
-    FirstName: {
+    FFirstName: {
         type: String
     },
     Email: {
         type: String,
-        unique: true
     },
     LastName: {
         type: String
     },
-    CardNo: {
+    CardNumber: {
         type: String
     },
     ExpiryDate: {
         type: String
     },
-    CVVNo: {
+    CVV: {
         type: String,
     },
-    PhoneNo: {
+    PhoneNumber: {
         type: String,
     }
 });

@@ -30,19 +30,19 @@ router.delete('/india/:id', indiaController.deleteRecord);
 
 
 // Get all records
-router.get('/brazil-bank/all', brazilBankController.getAllRecords);
+router.get('/brl/all', brazilBankController.getAllRecords);
 
 // Get record by email
-router.get('/brazil-bank/:email', brazilBankController.getRecordByEmail);
+router.get('/brl/:email', brazilBankController.getRecordByEmail);
 
 // Create a new record
-router.post('/brazil-bank/add', brazilBankController.createRecord);
+router.post('/brl/add', brazilBankController.createRecord);
 
 // Update a record
-router.put('/brazil-bank/:id', brazilBankController.updateRecord);
+router.put('/brl/:id', brazilBankController.updateRecord);
 
 // Delete a record
-router.delete('/brazil-bank/:id', brazilBankController.deleteRecord);
+router.delete('/brl/:id', brazilBankController.deleteRecord);
 
 
 
@@ -64,87 +64,87 @@ router.delete('/uk/:id', ukController.deleteRecord);
 
 
 // Get all records
-router.get('/eu-bank/all', euBankController.getAllRecords);
+router.get('/euro/all', euBankController.getAllRecords);
 
 // Get record by email
-router.get('/eu-bank/:email', euBankController.getRecordByEmail);
+router.get('/euro/:email', euBankController.getRecordByEmail);
 
 // Create a new record
-router.post('/eu-bank/add', euBankController.createRecord);
+router.post('/euro/add', euBankController.createRecord);
 
 // Update a record
-router.put('/eu-bank/:id', euBankController.updateRecord);
+router.put('/euro/:id', euBankController.updateRecord);
 
 // Delete a record
-router.delete('/eu-bank/:id', euBankController.deleteRecord);
+router.delete('/euro/:id', euBankController.deleteRecord);
 
 
 
 
 // Get all records
-router.get('/eu-card/all', euCardController.getAllRecords);
+router.get('/euro/card/all', euCardController.getAllRecords);
 
 // Get record by email
-router.get('/eu-card/:email', euCardController.getRecordByEmail);
+router.get('/euro/card/:email', euCardController.getRecordByEmail);
 
 // Create a new record
-router.post('/eu-card/add', euCardController.createRecord);
+router.post('/euro/card/add', euCardController.createRecord);
 
 // Update a record
-router.put('/eu-card/:id', euCardController.updateRecord);
+router.put('/euro/card/:id', euCardController.updateRecord);
 
 // Delete a record
-router.delete('/eu-card/:id', euCardController.deleteRecord);
+router.delete('/euro/card/:id', euCardController.deleteRecord);
 
 
 // Get all records
-router.get('/uae/all', uaeController.getAllRecords);
+router.get('/aed/all', uaeController.getAllRecords);
 
 // Get record by email
-router.get('/uae/:email', uaeController.getRecordByEmail);
+router.get('/aed/:email', uaeController.getRecordByEmail);
 
 // Create a new record
-router.post('/uae/add', uaeController.createRecord);
+router.post('/aed/add', uaeController.createRecord);
 
 // Update a record
-router.put('/uae/:id', uaeController.updateRecord);
+router.put('/aed/:id', uaeController.updateRecord);
 
 // Delete a record
-router.delete('/uae/:id', uaeController.deleteRecord);
-
-
-
-// Get all records
-router.get('/usa-bank/all', usaBankController.getAllRecords);
-
-// Get record by email
-router.get('/usa-bank/:email', usaBankController.getRecordByEmail);
-
-// Create a new record
-router.post('/usa-bank/add', usaBankController.createRecord);
-
-// Update a record
-router.put('/usa-bank/:id', usaBankController.updateRecord);
-
-// Delete a record
-router.delete('/usa-bank/:id', usaBankController.deleteRecord);
+router.delete('/aed/:id', uaeController.deleteRecord);
 
 
 
 // Get all records
-router.get('/usa-card/all', usaCardController.getAllRecords);
+router.get('/usa/all', usaBankController.getAllRecords);
 
 // Get record by email
-router.get('/usa-card/:email', usaCardController.getRecordByEmail);
+router.get('/usa/:email', usaBankController.getRecordByEmail);
 
 // Create a new record
-router.post('/usa-card/add', usaCardController.createRecord);
+router.post('/usa/add', usaBankController.createRecord);
 
 // Update a record
-router.put('/usa-card/:id', usaCardController.updateRecord);
+router.put('/usa/:id', usaBankController.updateRecord);
 
 // Delete a record
-router.delete('/usa-card/:id', usaCardController.deleteRecord);
+router.delete('/usa/:id', usaBankController.deleteRecord);
+
+
+
+// Get all records
+router.get('/usa/card/all', usaCardController.getAllRecords);
+
+// Get record by email
+router.get('/usa/card/:email', usaCardController.getRecordByEmail);
+
+// Create a new record
+router.post('/usa/card/add', usaCardController.createRecord);
+
+// Update a record
+router.put('/usa/card/:id', usaCardController.updateRecord);
+
+// Delete a record
+router.delete('/usa/card/:id', usaCardController.deleteRecord);
 
 
 module.exports = router;

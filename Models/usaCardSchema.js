@@ -6,33 +6,20 @@ const usaCardSchema = new mongoose.Schema({
     },
     Email: {
         type: String,
-        unique: true
     },
     LastName: {
         type: String
     },
-    BankName: {
+    CardNumber: {
         type: String
     },
-    AccountNo: {
+    ExpiryDate: {
         type: String
     },
-    City: {
+    CVV: {
         type: String,
     },
-    State: {
-        type: String,
-    },
-    Address: {
-        type: String,
-    },
-    ZipCode: {
-        type: String,
-    },
-    AccountType: {
-        type: String,
-    },
-    ABACode: {
+    PhoneNumber: {
         type: String,
     }
 });

@@ -27,7 +27,7 @@ async function generateUniqueOrderId() {
 exports.addTransaction = async (req, res) => {
     try {
         var id;
-        const { TransactionId, Email, Name, Country, BankName, AccountNumber, IFSC, USDTAmount, Token, ProcessingFee, ReceivedAmount, NetworkFee } = req.body;
+        const { Email, Country, AccountDetail, USDTAmount, Token, ProcessingFee, ReceivedAmount, NetworkFee } = req.body;
 
         let counter = await Counter.findOne({ Title: `Transaction` });
 
@@ -37,20 +37,16 @@ exports.addTransaction = async (req, res) => {
             counter.Count += 1;
         }
 
-        
+
         id = `15300990${counter.Count}`;
         const currentDate = moment().format('DD-MM-YYYY'); // Current date in 'YYYY-MM-DD' format
         const currentTime = moment().format('HH:mm:ss');   // Current time in 'HH:mm:ss' format
-        
+
         const newTransaction = new Transaction({
             OrderId: id,
-            TransactionId,
             Email,
-            Name,
             Country,
-            BankName,
-            AccountNumber,
-            IFSC,
+            AccountDetail,
             USDTAmount,
             Token,
             ProcessingFee,
@@ -60,10 +56,10 @@ exports.addTransaction = async (req, res) => {
             Date: currentDate,
             Time: currentTime
         });
-        
+
         await newTransaction.save();
         await counter.save();
-        
+
         res.status(201).json({ message: "Transaction added successfully", transaction: newTransaction });
     } catch (error) {
         res.status(500).json({ message: "Error adding transaction", error: error.message });
@@ -157,8 +153,7 @@ exports.deleteTransaction = async (req, res) => {
 // Get a Order count by ID
 exports.getCountById = async (req, res) => {
     try {
-        const  id = "66d68d90822524eed39e7611";
-        const Count = await Counter.findById(id);
+        const Count = await Counter.findOne({ Title: "DepositTransaction" });
 
         if (!Count) {
             return res.status(404).json({ message: "Count not found" });

@@ -5,8 +5,7 @@ const brazilBankSchema = new mongoose.Schema({
         type: String
     },
     Email: {
-        type: String,
-        unique: true
+        type: String
     },
     LastName: {
         type: String
