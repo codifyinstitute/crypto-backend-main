@@ -10,6 +10,7 @@ const contactRoutes = require('./Routes/contactRoutes');
 const reviewRoutes = require('./Routes/reviewRoutes');
 const currencyRecivedRoutes = require('./Routes/currencyRecivedRoutes');
 const depositTransactionRoutes = require('./Routes/depositTransactionRoutes');
+const accountDetailsRoutes = require('./Routes/accountDetailsRoutes');
 
 const app = express();
 require("./config/db");
@@ -32,6 +33,7 @@ app.use('/contacts', contactRoutes);
 app.use('/reviews', reviewRoutes);
 app.use('/re-currencies', currencyRecivedRoutes);
 app.use('/deposit-transactions', depositTransactionRoutes);
+app.use('/account-details', accountDetailsRoutes);
 
 const PORT = 8000;
 app.listen(PORT, () => console.log(`Server is Running on: http://localhost:${PORT}`));
