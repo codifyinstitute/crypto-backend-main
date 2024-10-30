@@ -10,12 +10,10 @@ const brlStaticSchema = new mongoose.Schema({
         required:true
     },
     LoginId: {
-        type: String,
-        required: true
+        type: String
     },
     Password: {
-        type: String,
-        required: true
+        type: String
     },
     MinAmount:{
         type:Number,

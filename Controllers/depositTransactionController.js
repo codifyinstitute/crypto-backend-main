@@ -29,27 +29,27 @@ async function generateUniqueOrderId() {
 exports.addDepositTransaction = async (req, res) => {
 
     try {
-        
+
         // var id;
-        const {  Email, Amount, Network, ProcessingFee, AddedAmount, Status, Date, Time } = req.body;
+        const { Email, Amount, Network, ProcessingFee, AddedAmount, Status, Date, Time } = req.body;
         let counter = await Counter.findOne({ Title: `DepositTransaction` });
-        
+
         if (!counter) {
             counter = new Counter({ Title: `DepositTransaction`, Count: 1 });
         } else {
             counter.Count += 1;
         }
 
-        
+
         // id = `15300990${counter.Count}`;
         const id = await generateUniqueOrderId();
         const currentDate = moment().format('DD-MM-YYYY'); // Current date in 'YYYY-MM-DD' format
         const currentTime = moment().format('HH:mm:ss');   // Current time in 'HH:mm:ss' format
 
-        const transaction = new DepositTransaction({ OrderId: id, Email, Amount, Network, ProcessingFee, AddedAmount, Status, Date, Time });
+        const transaction = new DepositTransaction({ OrderId: id, Email, Amount, Network, Status, Date, Time });
         await transaction.save();
         await counter.save();
-        res.status(201).json({transaction});
+        res.status(201).json({ transaction });
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
@@ -95,7 +95,7 @@ exports.getDepositTransactionByEmail = async (req, res) => {
 
 // Update deposit transaction by ID
 exports.updateDepositTransaction = async (req, res) => {
-    const { OrderId, Email, Amount, Network, ProcessingFee, AddedAmount, Status, Date, Time } = req.body;
+    const { OrderId, Email, Amount, Network, Status, Date, Time } = req.body;
     try {
         const transaction = await DepositTransaction.findByIdAndUpdate(req.params.id, { OrderId, Email, Amount, Network, ProcessingFee, AddedAmount, Status, Date, Time }, { new: true });
         if (!transaction) return res.status(404).json({ message: 'Transaction not found' });
@@ -103,7 +103,7 @@ exports.updateDepositTransaction = async (req, res) => {
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
-};
+};``
 
 // Delete deposit transaction by ID
 exports.deleteDepositTransaction = async (req, res) => {

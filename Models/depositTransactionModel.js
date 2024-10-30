@@ -18,14 +18,6 @@ const depositTransactionModel = new mongoose.Schema({
         type:String,
         required:true
     },
-    ProcessingFee:{
-        type:Number,
-        required:true
-    },
-    AddedAmount:{
-        type:Number,
-        required:true
-    },
     Status:{
         type:String,
         required:true
