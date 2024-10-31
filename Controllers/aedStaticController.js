@@ -30,6 +30,15 @@ exports.getAllStaticData = async (req, res) => {
         res.status(500).json({ message: "Error retrieving static data", error: error.message });
     }
 };
+exports.getOneStaticData = async (req, res) => {
+    try {
+        const staticData = await aedStaticSchema.findOne();
+
+        res.status(200).json(staticData);
+    } catch (error) {
+        res.status(500).json({ message: "Error retrieving static data", error: error.message });
+    }
+};
 
 // Get static data by ID
 exports.getStaticDataById = async (req, res) => {

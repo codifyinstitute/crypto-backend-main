@@ -1,5 +1,6 @@
 const DepositTransaction = require('../Models/depositTransactionModel');
 const Counter = require('../Models/counterSchema');
+const Wallet = require('../Models/walletModel');
 const moment = require('moment');
 
 
@@ -46,7 +47,7 @@ exports.addDepositTransaction = async (req, res) => {
         const currentDate = moment().format('DD-MM-YYYY'); // Current date in 'YYYY-MM-DD' format
         const currentTime = moment().format('HH:mm:ss');   // Current time in 'HH:mm:ss' format
 
-        const transaction = new DepositTransaction({ OrderId: id, Email, Amount, Network, Status, Date, Time });
+        const transaction = new DepositTransaction({ OrderId: id, Email, Amount, Network, Status, Paid: false, Date, Time });
         await transaction.save();
         await counter.save();
         res.status(201).json({ transaction });
@@ -103,7 +104,7 @@ exports.updateDepositTransaction = async (req, res) => {
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
-};``
+};
 
 // Delete deposit transaction by ID
 exports.deleteDepositTransaction = async (req, res) => {
@@ -113,5 +114,21 @@ exports.deleteDepositTransaction = async (req, res) => {
         res.status(204).send();
     } catch (error) {
         res.status(500).json({ message: error.message });
+    }
+};
+
+exports.updatePayment = async (req, res) => {
+    const { amount } = req.body;
+    try {
+        const transaction = await DepositTransaction.findById(req.params.id);
+        if (!transaction) return res.status(404).json({ message: 'Transaction not found' });
+        var wallet = await Wallet.findOne({ Email: transaction.Email });
+        wallet.Amount += amount;
+        transaction.Paid = true;
+        await transaction.save();
+        await wallet.save();
+        res.status(200).json(transaction);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
 };

@@ -19,6 +19,7 @@ router.get('/get/email/:Email',depositTransactionController.getDepositTransactio
 // Update deposit transaction by ID
 router.put('/update/:id', depositTransactionController.updateDepositTransaction);
 
+router.put('/paid/:id', depositTransactionController.updatePayment);
 // Delete deposit transaction by ID
 router.delete('/delete/:id', depositTransactionController.deleteDepositTransaction);
 

@@ -11,6 +11,9 @@ const reviewRoutes = require('./Routes/reviewRoutes');
 const currencyRecivedRoutes = require('./Routes/currencyRecivedRoutes');
 const depositTransactionRoutes = require('./Routes/depositTransactionRoutes');
 const accountDetailsRoutes = require('./Routes/accountDetailsRoutes');
+const adminRoutes = require('./Routes/adminRoutes');
+const withdrawRoutes = require('./Routes/withdrawRoutes');
+const walletRoutes = require('./Routes/walletRoutes');
 
 const app = express();
 require("./config/db");
@@ -34,6 +37,9 @@ app.use('/reviews', reviewRoutes);
 app.use('/re-currencies', currencyRecivedRoutes);
 app.use('/deposit-transactions', depositTransactionRoutes);
 app.use('/account-details', accountDetailsRoutes);
+app.use('/admin', adminRoutes);
+app.use('/withdraw', withdrawRoutes);
+app.use('/wallet', walletRoutes);
 
 const PORT = 8000;
 app.listen(PORT, () => console.log(`Server is Running on: http://localhost:${PORT}`));

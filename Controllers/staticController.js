@@ -113,3 +113,14 @@ exports.loginUser = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+// Get one static data entries
+exports.getOneStaticData = async (req, res) => {
+    try {
+        const staticData = await Static.findOne();
+
+        res.status(200).json(staticData);
+    } catch (error) {
+        res.status(500).json({ message: "Error retrieving static data", error: error.message });
+    }
+};

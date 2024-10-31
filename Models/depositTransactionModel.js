@@ -18,6 +18,10 @@ const depositTransactionModel = new mongoose.Schema({
         type:String,
         required:true
     },
+    Paid:{
+        type:Boolean,
+        default:false
+    },
     Status:{
         type:String,
         required:true

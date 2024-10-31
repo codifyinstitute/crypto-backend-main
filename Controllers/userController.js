@@ -1,4 +1,5 @@
-const User = require('../Models/userSchema'); // Adjust the path as necessary
+const User = require('../Models/userSchema');
+const Wallet = require('../Models/walletModel')
 const { generateOTP, sendOTPEmail } = require('../Utils/otpUtils'); // Adjust the path as necessary
 const fs = require('fs');
 const path = require('path');
@@ -72,13 +73,11 @@ exports.login = async (req, res) => {
             // Email not registered, initiate signup
             const otp = generateOTP();
             const otpExpires = Date.now() + 10 * 60 * 1000; // OTP expires in 10 minutes
-
             user = new User({ Email, MobileNo, Profile: "Icon.jpg", OTP: otp, OTPExpires: otpExpires });
-
+            const wallet = new Wallet({ Email, Amount: 0, PendingAmount: 0 });
+            await wallet.save();
             await user.save();
-
             await sendOTPEmail(Email, otp);
-
             return res.status(200).json({ message: "Email not registered. OTP sent to email for signup." });
         }
 
