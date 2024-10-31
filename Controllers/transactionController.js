@@ -1,6 +1,7 @@
 const moment = require('moment');
 const Counter = require('../Models/counterSchema');
 const Transaction = require('../Models/transactionSchema');
+const Wallet = require('../Models/walletModel');
 
 // Utility function to generate a random 10-digit number
 function generateOrderId() {
@@ -42,6 +43,10 @@ exports.addTransaction = async (req, res) => {
         const currentDate = moment().format('DD-MM-YYYY'); // Current date in 'YYYY-MM-DD' format
         const currentTime = moment().format('HH:mm:ss');   // Current time in 'HH:mm:ss' format
 
+        var wallet = await Wallet.findOne({ Email: transaction.Email });
+        wallet.Amount -= USDTAmount;
+        wallet.PendingAmount = USDTAmount;
+
         const newTransaction = new Transaction({
             OrderId: id,
             Email,
@@ -58,6 +63,7 @@ exports.addTransaction = async (req, res) => {
         });
 
         await newTransaction.save();
+        await wallet.save();
         await counter.save();
 
         res.status(201).json({ message: "Transaction added successfully", transaction: newTransaction });

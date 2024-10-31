@@ -7,6 +7,7 @@ const createWithdraw = async (req, res) => {
         await newWithdraw.save();
         res.status(201).json(newWithdraw);
     } catch (error) {
+        console.log(error)
         res.status(400).json({ message: error.message });
     }
 };

@@ -10,7 +10,7 @@ const withdrawModel = new mongoose.Schema({
         required: true,
     },
     Network:{
-        type: Number,
+        type: String,
         required: true
     },
     WalletAddress:{
@@ -24,6 +24,12 @@ const withdrawModel = new mongoose.Schema({
     Status:{
         type: String,
         required: true
+    },
+    Date:{
+        type: String
+    },
+    Time:{
+        type: String
     }
 });
 

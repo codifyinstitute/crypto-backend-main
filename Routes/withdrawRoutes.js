@@ -18,7 +18,7 @@ router.get('/all', getAllWithdraws);
 
 // Get withdrawal by ID
 router.get('/get/:id', getWithdrawById);
-router.get('/get/:email', getAllByEmailWithdraws);
+router.get('/get/email/:email', getAllByEmailWithdraws);
 
 // Update withdrawal by ID
 router.put('/update/:id', updateWithdraw);
