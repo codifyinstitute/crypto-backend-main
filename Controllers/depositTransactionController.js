@@ -123,12 +123,27 @@ exports.updatePayment = async (req, res) => {
         const transaction = await DepositTransaction.findById(req.params.id);
         if (!transaction) return res.status(404).json({ message: 'Transaction not found' });
         var wallet = await Wallet.findOne({ Email: transaction.Email });
-        wallet.Amount += amount;
+        wallet.Amount += Number(amount);
         transaction.Paid = true;
+        transaction.Status = "successful";
         await transaction.save();
         await wallet.save();
         res.status(200).json(transaction);
     } catch (error) {
         res.status(400).json({ message: error.message });
+        console.log(error)
+    }
+};
+
+exports.Reject = async (req, res) => {
+    try {
+        const transaction = await DepositTransaction.findById(req.params.id);
+        if (!transaction) return res.status(404).json({ message: 'Transaction not found' });
+        transaction.Status = "Failed";
+        await transaction.save();
+        res.status(200).json(transaction);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+        console.log(error)
     }
 };

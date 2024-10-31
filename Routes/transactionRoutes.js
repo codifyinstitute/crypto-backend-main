@@ -69,6 +69,8 @@ router.get('/get/email/:Email', transactionController.getTransactionByEmail);
 
 // Route to update a transaction by ID
 router.put('/put/:id', transactionController.updateTransaction);
+router.put('/complete/:id', transactionController.completed);
+router.put('/reject/:id', transactionController.Reject);
 
 // Route to delete a transaction by ID
 router.delete('/del/:id', transactionController.deleteTransaction);
