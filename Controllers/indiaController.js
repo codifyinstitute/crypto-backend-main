@@ -1,4 +1,9 @@
-const India = require('../Models/indiaSchema'); // Adjust the path as necessary
+const India = require('../Models/indiaSchema');
+const BrazilBank = require('../Models/brazilBankSchema');
+const UK = require('../Models/ukSchema'); 
+const EUBank = require('../Models/euBankSchema');
+const Uae = require('../Models/uaeSchema');
+const UsaBank = require('../Models/usaBankSchema');
 
 // Get all records
 const getAllRecords = async (req, res) => {
@@ -54,10 +59,52 @@ const deleteRecord = async (req, res) => {
     }
 };
 
+const getAllCountryBank = async (req, res) => {
+    try {
+        const email = req.params.email;
+
+        const [
+            indiaRecord,
+            usaRecord,
+            ukRecord,
+            aedRecord,
+            euroRecord,
+            brazilRecord
+        ] = await Promise.all([
+            India.find({ Email: email }),
+            UsaBank.find({ Email: email }),
+            UK.find({ Email: email }),
+            Uae.find({ Email: email }),
+            EUBank.find({ Email: email }),
+            BrazilBank.find({ Email: email })
+        ]);
+
+        // Combine all records into one array with country names
+        const allRecords = [
+            ...indiaRecord.map(record => ({ ...record.toObject(), Country: "India" })),
+            ...usaRecord.map(record => ({ ...record.toObject(), Country: "United States of America" })),
+            ...ukRecord.map(record => ({ ...record.toObject(), Country: "United Kingdom" })),
+            ...aedRecord.map(record => ({ ...record.toObject(), Country: "Dubai" })),
+            ...euroRecord.map(record => ({ ...record.toObject(), Country: "European Union" })),
+            ...brazilRecord.map(record => ({ ...record.toObject(), Country: "Brazil" }))
+        ];
+
+        // console.log(allRecords);
+
+        // Optionally, send the combined records as a response
+        res.json(allRecords);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while fetching bank records.' });
+    }
+};
+
+
 module.exports = {
     getAllRecords,
     getRecordByEmail,
     createRecord,
     updateRecord,
     deleteRecord,
+    getAllCountryBank,
 };

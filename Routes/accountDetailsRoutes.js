@@ -14,6 +14,7 @@ const usaCardController = require('../Controllers/usaCardController');
 
 // Get all records
 router.get('/india/all', indiaController.getAllRecords);
+router.get('/bank/all/:email', indiaController.getAllCountryBank);
 
 // Get record by email
 router.get('/india/:email', indiaController.getRecordByEmail);

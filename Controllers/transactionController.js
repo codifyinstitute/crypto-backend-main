@@ -43,7 +43,7 @@ exports.addTransaction = async (req, res) => {
         const currentDate = moment().format('DD-MM-YYYY'); // Current date in 'YYYY-MM-DD' format
         const currentTime = moment().format('HH:mm:ss');   // Current time in 'HH:mm:ss' format
 
-        var wallet = await Wallet.findOne({ Email: transaction.Email });
+        var wallet = await Wallet.findOne({ Email });
         wallet.Amount -= USDTAmount;
         wallet.PendingAmount = USDTAmount;
 
