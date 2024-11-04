@@ -6,6 +6,7 @@ const {
     updateWithdraw,
     deleteWithdraw,
     getAllByEmailWithdraws,
+    Reject
 } = require('../Controllers/withdrawController'); // Adjust the path as needed
 
 const router = express.Router();
@@ -22,6 +23,7 @@ router.get('/get/email/:email', getAllByEmailWithdraws);
 
 // Update withdrawal by ID
 router.put('/update/:id', updateWithdraw);
+router.put('/reject/:id', Reject);
 
 // Delete withdrawal by ID
 router.delete('/delete/:id', deleteWithdraw);

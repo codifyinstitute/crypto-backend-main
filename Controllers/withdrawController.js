@@ -1,10 +1,16 @@
 const Withdraw = require('../Models/withdrawModel'); // Adjust the path as needed
+const Wallet = require('../Models/walletModel');
+
 
 // Create a new withdrawal
 const createWithdraw = async (req, res) => {
     try {
+        var wallet = await Wallet.findOne({ Email: req.body.Email });
+        wallet.Amount -= req.body.WithdrawAmount;
+        wallet.PendingAmount = req.body.WithdrawAmount;
         const newWithdraw = new Withdraw(req.body);
         await newWithdraw.save();
+        await wallet.save();
         res.status(201).json(newWithdraw);
     } catch (error) {
         console.log(error)
@@ -24,7 +30,7 @@ const getAllWithdraws = async (req, res) => {
 
 const getAllByEmailWithdraws = async (req, res) => {
     try {
-        const withdrawals = await Withdraw.find({ Email:req.params.email });
+        const withdrawals = await Withdraw.find({ Email: req.params.email });
         res.status(200).json(withdrawals);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -72,6 +78,25 @@ const deleteWithdraw = async (req, res) => {
     }
 };
 
+
+const Reject = async (req, res) => {
+    const { amount } = req.body;
+    try {
+        const transaction = await Withdraw.findById(req.params.id);
+        if (!transaction) return res.status(404).json({ message: 'Transaction not found' });
+        var wallet = await Wallet.findOne({ Email: transaction.Email });
+        wallet.Amount += Number(amount);
+        wallet.PendingAmount -= Number(amount);
+        transaction.Status = "Failed";
+        await transaction.save();
+        await wallet.save();
+        res.status(200).json(transaction);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+        console.log(error)
+    }
+};
+
 module.exports = {
     createWithdraw,
     getAllWithdraws,
@@ -79,4 +104,5 @@ module.exports = {
     updateWithdraw,
     deleteWithdraw,
     getAllByEmailWithdraws,
+    Reject
 };
