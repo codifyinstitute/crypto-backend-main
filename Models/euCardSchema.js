@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const euCardSchema = new mongoose.Schema({
-    FFirstName: {
+    FirstName: {
         type: String
     },
     Email: {
