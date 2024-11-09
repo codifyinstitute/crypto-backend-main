@@ -159,7 +159,7 @@ exports.deleteTransaction = async (req, res) => {
 // Get a Order count by ID
 exports.getCountById = async (req, res) => {
     try {
-        const Count = await Counter.findOne({ Title: "DepositTransaction" });
+        const Count = await Counter.findOne({ Title: "Transaction" });
 
         if (!Count) {
             return res.status(404).json({ message: "Count not found" });

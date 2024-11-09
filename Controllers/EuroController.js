@@ -108,7 +108,6 @@ async function addOrUpdateEuroPaymentDetails(req, res) {
           cardReceivedAmount === undefined || !cardStatus || !cardDate || !cardTime) {
         return res.status(400).json({ message: 'Missing required card details fields.' });
       }
-
       // Update transaction counter
       counter = await Counter.findOne({ Title: 'Transaction' });
       if (!counter) {
