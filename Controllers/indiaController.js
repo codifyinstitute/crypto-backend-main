@@ -84,7 +84,7 @@ const getAllCountryBank = async (req, res) => {
             ...indiaRecord.map(record => ({ ...record.toObject(), Country: "India" })),
             ...usaRecord.map(record => ({ ...record.toObject(), Country: "United States of America" })),
             ...ukRecord.map(record => ({ ...record.toObject(), Country: "United Kingdom" })),
-            ...aedRecord.map(record => ({ ...record.toObject(), Country: "Dubai" })),
+            ...aedRecord.map(record => ({ ...record.toObject(), Country: "UAE" })),
             ...euroRecord.map(record => ({ ...record.toObject(), Country: "European Union" })),
             ...brazilRecord.map(record => ({ ...record.toObject(), Country: "Brazil" }))
         ];
